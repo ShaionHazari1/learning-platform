@@ -1,0 +1,23 @@
+.sub-header img{
+    width: 300px;
+    margin-right: 80px;
+}
+.sub-header{
+    display: flex;
+
+}
+.sub-header-info{
+    margin-top: 30px;
+}
+@media screen and (max-width: 850px) {
+    .sub-header{
+        display: block;
+    }
+    .sub-header-info{
+        width: 90%;
+        padding: 10px;
+        text-align: center;
+    }
+    
+    
+}
