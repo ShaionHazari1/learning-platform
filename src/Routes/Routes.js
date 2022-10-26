@@ -5,6 +5,7 @@ import Faq from "../Faq/Faq";
 import Home from "../Home/Home";
 import Main from "../Layout/Main";
 import Login from "../Shared/Login/Login";
+import Register from "../Shared/Register/Register";
 
 export const routes = createBrowserRouter([
     {
@@ -34,6 +35,11 @@ export const routes = createBrowserRouter([
             {
                 path:'/login',
                 element:<Login></Login>
+
+            },
+            {
+                path:'/register',
+                element:<Register></Register>
 
             }
         ]
