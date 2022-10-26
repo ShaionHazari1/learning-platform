@@ -3,19 +3,19 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Link } from 'react-router-dom';
-
+import { FaAmazon } from "react-icons/fa";
 
 const Header = () => {
     return (
         <div>
             <Navbar collapseOnSelect expand="lg" text="dark" bg="light" variant="light">
                 <Container>
+                    <FaAmazon className='me-2 text-secondary'></FaAmazon>
                     <Navbar.Brand><span className='text-warning'>Web</span>Course</Navbar.Brand>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="me-auto">
-                            <Nav.Link href="#features">Features</Nav.Link>
-                            <Nav.Link href="#pricing">Pricing</Nav.Link>
+                            
                             </Nav>
                         <Nav>
                             <Nav.Link><Link className='text-dark' to='/home'>Home</Link></Nav.Link>
