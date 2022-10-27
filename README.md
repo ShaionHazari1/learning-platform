@@ -4,6 +4,11 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Available Scripts
 
+1.Cyclone is very impact for my assainment.
+2.This Assainment is very cretical..
+3.Now i am very tried..please try another attempted..
+4.please forgive me
+
 In the project directory, you can run:
 
 ### `npm start`
