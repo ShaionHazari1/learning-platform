@@ -12,6 +12,7 @@ export const routes = createBrowserRouter([
     {
         path: '/',
         element: <Main></Main>,
+        errorElement:<div>This page is not Found 404 ..please Reload</div>,
         children: [
             {
                 path: '/home',
