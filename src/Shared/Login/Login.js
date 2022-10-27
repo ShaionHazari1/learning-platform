@@ -7,15 +7,23 @@ import { useContext } from 'react';
 import { AuthContext } from '../../Context/AuthProvider';
 import { GoogleAuthProvider } from 'firebase/auth';
 import { useState } from 'react';
+import { toast } from 'react-toastify';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+
+
 
 
 
 
 
 const Login = () => {
-    const [user,setUser] =useState({})
-   
-    const { providerLogin,signIn } = useContext(AuthContext);
+    const [error, setError] = useState('');
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const from = location.state?.from?.pathname || '/';
+
+    const { providerLogin, signIn, setLoading } = useContext(AuthContext);
 
 
     const handleSubmit = event => {
@@ -24,29 +32,41 @@ const Login = () => {
         const email = form.email.value;
         const password = form.password.value;
         console.log(email, password);
-        signIn(email,password)
-        .then(result =>{
-            const user = result.user;
-            console.log(user);
-            setUser(user);
-            form.reset();
-        })
-        .catch(error =>console.error(error))
+        signIn(email, password)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+
+                form.reset();
+                setError('');
+                if (user.emailVerified) {
+                    navigate(from, { replace: true });
+                }
+                else {
+                    toast.error('Your email is not verified. Please verify your email address.')
+                }
+            })
+            .catch(error => {
+                setError(error.message)
+            })
+            .finally(() => {
+                setLoading(false);
+            })
     }
 
-   
+
 
     const googleProvider = new GoogleAuthProvider()
 
     const handleGoogleSignIn = () => {
         providerLogin(googleProvider)
-        .then(result =>{
-            const user =result.user;
-            console.log(user);
-        })
-       .catch(error =>console.error(error))
-            
-           
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+            })
+            .catch(error => console.error(error))
+
+
     }
     return (
         <div className='container'>
@@ -65,15 +85,19 @@ const Login = () => {
                 <Button variant="primary" type="submit">
                     Login
                 </Button>
-                <Form.Text className="text-danger">
-
-                </Form.Text>
-
+                <div>
+                    <Link to='/register'>Please Resister</Link>
+                </div>
             </Form>
             <ButtonGroup vertical>
                 <Button onClick={handleGoogleSignIn} className='mt-3' variant="outline-primary"><FaGoogle></FaGoogle> Login with Google</Button>
 
             </ButtonGroup>
+
+            <Form.Text className="text-danger">
+                {error}
+            </Form.Text>
+
         </div>
     );
 };
