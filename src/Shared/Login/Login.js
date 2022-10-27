@@ -6,12 +6,14 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import { useContext } from 'react';
 import { AuthContext } from '../../Context/AuthProvider';
 import { GoogleAuthProvider } from 'firebase/auth';
+import { useState } from 'react';
 
 
 
 
 
 const Login = () => {
+    const [user,setUser] =useState({})
    
     const { providerLogin,signIn } = useContext(AuthContext);
 
@@ -26,6 +28,7 @@ const Login = () => {
         .then(result =>{
             const user = result.user;
             console.log(user);
+            setUser(user);
             form.reset();
         })
         .catch(error =>console.error(error))
